@@ -8,24 +8,20 @@ import org.springframework.stereotype.Service;
 import com.example.lesson02.domain.UsedGoods;
 import com.example.lesson02.mapper.UsedGoodsMapper;
 
-// Service (Bussoness logic) => BO(Bussiness Object)
-// 패키지는 bo => UsedGoodsBO
-@Service // Spring Bean으로 등록
+//Service 레이어: 비즈니스 로직을 처리하는 클래스 (Business logic layer)
+//BO(Business Object)로 역할을 수행하는 클래스
+@Service // Spring Bean으로 등록하여, 스프링에서 관리되도록 함
 public class UsedGoodsBO {
-	
-	@Autowired // DI(Dependency Injecton): 의존성 주입
-	private UsedGoodsMapper usedGoodsMapper;
-	
-	// input: 아무것도 없음 컨트롤러한테 받는다.  
-	// output 컨트롤러한테 ListUsedGoods를 준다. 
-	
-	// 컨트롤러한테 받은 아웃풋 => List<UsedGoods>
-	// getUsedGoodsList() <= 컨트롤러한테 받는 인풋 
-	
-	public List<UsedGoods> getUsedGoodsList() {
-		List<UsedGoods> usedGoodsList = usedGoodsMapper.selectUsedGoodsList();
-		return usedGoodsList; // Lesson02Ex01RestController로 리턴
-	}
-	
-
+ 
+	 @Autowired // 의존성 주입(DI, Dependency Injection) - UsedGoodsMapper 객체를 자동으로 주입받음
+	 private UsedGoodsMapper usedGoodsMapper;
+	 
+	 // input: 컨트롤러로부터 받은 요청 (특정 인풋은 없음)
+	 // output: 컨트롤러에게 List<UsedGoods> 형태의 데이터를 반환
+	 
+	 // getUsedGoodsList() 메서드: UsedGoods 데이터를 List 형태로 반환
+	 public List<UsedGoods> getUsedGoodsList() {
+	     List<UsedGoods> usedGoodsList = usedGoodsMapper.selectUsedGoodsList(); // DB에서 상품 목록을 가져옴
+	     return usedGoodsList; // 컨트롤러(Lesson02Ex01RestController)로 반환
+	 	}
 }
