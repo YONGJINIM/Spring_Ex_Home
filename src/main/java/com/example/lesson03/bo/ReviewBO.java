@@ -12,10 +12,25 @@ public class ReviewBO {
 	@Autowired
 	private ReviewMapper reviewMapper;
 	
-	// input int 
+	// input 
 	// output 
 	
 	public Review getReviewById(int id) {
 		return reviewMapper.selectReviewById(id);
+	}
+	
+	// input : 
+	// output : 
+	public int addReview(Review review) {
+		return reviewMapper.insertReview(review);
+	}
+	
+	public int addReviewAsField(
+			int storeId,
+			String menu,
+			String userName,
+			Double point,
+			String review) {
+	return reviewMapper.insertReviewAsField(storeId, menu, userName, point, review);
 	}
 }

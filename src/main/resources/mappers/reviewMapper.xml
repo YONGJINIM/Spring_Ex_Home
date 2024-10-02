@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
  <!-- 인터페이스 경로 -->
  <mapper namespace="com.example.lesson03.mapper.ReviewMapper"> 
  	<!-- 인터페이스 안 메서드 -->
@@ -21,4 +22,54 @@
  	WHERE
  		`id` = #{id}	
  	</select>
+ 	
+ 	<!-- insert 예제 1 resultType 돌려줄 타입이 없으니까 안써도 된다. select만 사용-->
+ 	<insert id="insertReview" 
+ 	parameterType="com.example.lesson03.domain.Review">
+ 	INSERT INTO `new_review`
+ 	(
+		`storeId`
+		,`menu`
+		,`userName`
+		,`point`
+		,`review`
+		,`createdAt`
+		,`updatedAt`
+ 	)
+	VALUES
+	(
+		#{storeId}	
+		,#{menu}
+		,#{userName}
+		,#{point}
+		,#{review}
+		,NOW()
+		,NOW()
+	)	
+ 	</insert>
+ 	
+ 	<!-- insert 예제2 -->
+ 	 <insert id="insertReviewAsField" 
+ 	parameterType="map">
+ 	INSERT INTO `new_review`
+ 	(
+		`storeId`
+		,`menu`
+		,`userName`
+		,`point`
+		,`review`
+		,`createdAt`
+		,`updatedAt`
+ 	)
+	VALUES
+	(
+		#{storeId}	
+		,#{menu}
+		,#{userName}
+		,#{point}
+		,#{review}
+		,NOW()
+		,NOW()
+	)	
+ 	</insert> 	
  </mapper>
