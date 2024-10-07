@@ -15,7 +15,7 @@ public class Lesson03Ex02RestController {
 	@Autowired
 	private ReviewBO reviewBO;
 	
-	@RequestMapping("/1") 
+	@RequestMapping("/1") // 도메인 객체를 new로 만들어 채워서 BO로 보낸다
 	public String ex02_1 () {
 		Review review = new Review();
 		review.setStoreId(7);
