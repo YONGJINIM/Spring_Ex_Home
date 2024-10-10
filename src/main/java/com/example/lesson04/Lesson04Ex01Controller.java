@@ -18,7 +18,7 @@ public class Lesson04Ex01Controller {
 	
 	// 회원가입 화면 
 	// http://localhost/lesson04/ex01/add-user-view
-	@RequestMapping(path = "/add-user-view" , method = RequestMethod.GET)
+	@RequestMapping(path = "/add-user-view" , method = RequestMethod.GET) //주소로 들어오기 때문에 GET방식
 	// String을 return 하면 @ResponseBody가 없어 경로로 인식함 
 	public String addUserView() {
 		return "lesson04/addUser"; //HTML 경로 
