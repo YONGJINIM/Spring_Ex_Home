@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko"> <!-- 타임리프 코드 사용시 필수 -->
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}">타임리프 예제1</title>
+<!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+</head>
+<body>
+		<h1>1. 변수</h1>
+		<!-- 변수 정의 내 스코프 안에서만 사용 가능 -->
+		<div th:with="number=100"> <!-- number라는 변수를 생성 후 100을 할당 -->
+		    [[${number}]] <!-- [[${number}]]를 사용해 변수 값을 출력 -->
+		    <div th:text="${number}"></div> <!-- th:text로도 number 값 출력 -->
+		</div>
+		<!-- th:block => 렌더링되지 않는 타임리프가 제공하는 특수한 태그 -->
+		<th:block th:with="number1=50, number2=250"> <!-- number1과 number2 변수를 정의 -->
+		    [[${number1}]], [[${number2}]]<br> <!-- [[${number1}]], [[${number2}]]로 변수 값을 출력 -->
+		    <div th:text="${number1}"></div> <!-- th:text로 number1 출력 -->
+		    <div th:text="${number1 + number2}"></div> <!-- 두 변수 값을 더한 결과 출력 -->
+		    <div th:text="'결과 : ' + ${number1 + number2}"></div> <!-- '결과 : ' 문자열과 더한 결과 출력 -->
+		    <div th:text="|결과 : ${number1 + number2}|"></div> <!-- pipe로 감싼 결과 출력 -->
+		    <div>결과 : [[${number1 + number2}]]</div> <!-- 텍스트로 결과 출력 -->
+		</th:block>
+		
+		<h1>2. 태그 나타내기 escape</h1>
+		<!-- th:text를 사용하면 HTML이 escape 된다. -->
+		<div th:text="'<b>진한 글씨</b>'"></div> <!-- <b> 태그는 그대로 텍스트로 출력 -->
+		
+		<!-- th:utext를 사용하면 태그가 적용된다. -->
+		<div th:utext="'<b>진한 글씨</b>'"></div> <!-- <b> 태그가 실제로 적용되어 진한 글씨로 출력 -->
+		
+		<h1>3. 조건문 - else if, else 없음</h1>
+		<th:block th:with="age=25"> <!-- age 변수를 정의 -->
+		    <!-- if문은 태그를 나타낼지 말지 조건에 따라 결정 -->
+		    <div th:if="${age == 25}" th:text="'나이는 25세이다.'"></div> <!-- age가 25면 '나이는 25세이다' 출력 -->
+		    <div th:if="${age == 25}" th:text="'나이는 30세이다.'"></div> <!-- age가 25면 '나이는 30세이다' 출력 -->
+		    <div th:if="${age != 25}" th:text="'나이는 30세가 아니다.'"></div> <!-- age가 25가 아니면 '나이는 30세가 아니다' 출력 -->
+		
+		    <!-- unless: if문의 반대 -->
+		    <h3 th:if="${age >= 25}">성인이다.</h3> <!-- age가 25 이상이면 '성인이다' 출력 -->
+		    <h3 th:unless="${age >= 25}">미성년자이다.</h3> <!-- age가 25 미만이면 '미성년자이다' 출력 -->
+		
+		    <h3 th:unless="${age == 20}">unless는 조건이 거짓일 때 참이된다.</h3> <!-- age가 20이 아니면 출력 -->
+		</th:block>
+		
+		<h1>4. switch-case문 : 일치되는 케이스 수행</h1>
+		<th:block th:with="season=가을"> <!-- season 변수를 정의 -->
+		    <div th:switch="${season}"> <!-- season 값을 기준으로 case 수행 -->
+		        <h3 th:case="'봄'">봄</h3> <!-- season이 '봄'이면 봄 출력 -->
+		        <h3 th:case="'여름'">여름</h3> <!-- season이 '여름'이면 여름 출력 -->
+		        <h3 th:case="'가을'">가을</h3> <!-- season이 '가을'이면 가을 출력 -->
+		        <h3 th:case="'겨울'">겨울</h3> <!-- season이 '겨울'이면 겨울 출력 -->
+		    </div>
+		</th:block>
+
+</body>
+</html>
