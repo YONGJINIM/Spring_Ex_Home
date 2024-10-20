@@ -51,7 +51,7 @@
 			<span th:text="${#strings.replace(str2, '치킨', '족발')}"></span>
 			
 			<h3>!!!!! 6) 구분자로 잘라서 배열에 넣기</h3>
-			<div th:text="${#strings.arraySplit(str1, '.')[0]}"></div>
+			<div th:text="${#strings.arraySplit(str1, '\.')[0]}"></div>
 			<div th:text="${#strings.arraySplit(str1, '.')[1]}"></div>
 			
 			<h3>7) 문자열 추출</h3>

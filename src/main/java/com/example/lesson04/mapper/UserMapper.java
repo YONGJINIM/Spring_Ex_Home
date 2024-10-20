@@ -22,4 +22,9 @@ public interface UserMapper {
 	// return : User (하나의 행만 가져오기 때문에 User 하나만 가져옴) 단건이면 없을 수 있다. 
 	public User selectLatestUser();
 	
+	// input : name
+	// output: boolean t : 중복 f:중복 X
+	public boolean isDuplicatedName(String name);
+	
+	
 }

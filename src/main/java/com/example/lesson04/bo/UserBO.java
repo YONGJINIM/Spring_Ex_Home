@@ -25,4 +25,8 @@ public class UserBO {
 		
 		
 	}
+	
+	public boolean isDuplicatedName(String name) {
+		return userMapper.isDuplicatedName(name);
+	}
 }
