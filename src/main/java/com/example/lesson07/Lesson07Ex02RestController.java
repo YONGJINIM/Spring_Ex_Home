@@ -48,4 +48,10 @@ public class Lesson07Ex02RestController {
 		// 9) id 1 ~ 3 조회 		between id 1 and 3
 		return studentRepository.findByIdBetween(1,3);
 	}
+	
+		@GetMapping("/select2")
+		public List<StudentEntity> select2(){
+			// 장래희망이 '변호사' 조회 
+			return studentRepository.findByDreanJob("변호사");
+		}
 }
